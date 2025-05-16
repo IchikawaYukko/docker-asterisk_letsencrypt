@@ -1,0 +1,18 @@
+services:
+  pbx:
+    image: ichikawayukko/asterisk:20.11
+    build:
+      context: 20.11/
+#    volumes:
+#      - ./pjsip.conf:/etc/asterisk/pjsip.conf:ro
+#      - ./extensions.conf:/etc/asterisk/extensions.conf:ro
+    network_mode: host
+    command: "-vvvdddf"
+
+    # To prevent huge logfile creation
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 500m
+
