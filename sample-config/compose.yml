@@ -1,0 +1,17 @@
+services:
+  pbx:
+    image: ichikawayukko/asterisk:20.11ja
+    volumes:
+      - ./volume/certs/:/etc/letsencrypt/:z
+      - ./pjsip.conf:/etc/asterisk/pjsip.conf:ro
+      - ./pjsip_wizard.conf:/etc/asterisk/pjsip_wizard.conf:ro
+      - ./extensions.conf:/etc/asterisk/extensions.conf:ro
+      - ./musiconhold.conf:/etc/asterisk/musiconhold.conf:ro
+    network_mode: host
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 500m
+
