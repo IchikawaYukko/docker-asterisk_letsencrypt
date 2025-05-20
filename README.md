@@ -8,7 +8,6 @@ Asterisk PBX with certbot client for serving SIP/TLS connection &amp; auto renew
 [+] Running 1/0
  ✔ Container asterisk-pbx-1  Created                                                                                                                                                 0.0s
 Attaching to pbx-1
-pbx-1  | ls: /etc/letsencrypt: No such file or directory
 pbx-1  | No certificates exist!
 pbx-1  | Run "certbot certonly --standalone --agree-tos -m YOUR_EMAIL_ADDRESS -d YOUR_PBX_DOMAIN --elliptic-curve secp384r1" to get certificates
 ```
