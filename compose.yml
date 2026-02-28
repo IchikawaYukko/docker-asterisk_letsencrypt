@@ -3,6 +3,8 @@ services:
     image: ichikawayukko/asterisk:20.11
     build:
       context: 20.11/
+    environment:
+      - HEALTHCHECK_SIPURL=sip:[::1]:5060;transport=udp
 #    volumes:
 #      - ./pjsip.conf:/etc/asterisk/pjsip.conf:ro
 #      - ./extensions.conf:/etc/asterisk/extensions.conf:ro
