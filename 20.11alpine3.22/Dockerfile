@@ -1,7 +1,7 @@
 FROM	golang:1.24.4-alpine3.22
 
 WORKDIR	/opt
-RUN	apk add asterisk asterisk-sample-config asterisk-sounds-en asterisk-sounds-moh asterisk-opus asterisk-fax certbot git && \
+RUN	apk add asterisk asterisk-sample-config asterisk-sounds-en asterisk-sounds-moh asterisk-opus asterisk-fax asterisk-speex asterisk-srtp certbot git && \
 	echo '0 0 * * Mon certbot renew; kill 1 # Auto renew & reload Asterisk' > /var/spool/cron/crontabs/root && \
 	echo '#!/bin/sh' >> /usr/local/bin/entrypoint.sh && \
 	echo 'crond -d 8 -L /var/log/crond.log' >> /usr/local/bin/entrypoint.sh && \

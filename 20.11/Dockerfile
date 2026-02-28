@@ -1,6 +1,6 @@
 FROM	alpine:3.21
 
-RUN	apk add asterisk asterisk-sample-config asterisk-sounds-en asterisk-sounds-moh asterisk-opus asterisk-fax certbot && \
+RUN	apk add asterisk asterisk-sample-config asterisk-sounds-en asterisk-sounds-moh asterisk-opus asterisk-fax asterisk-speex asterisk-srtp certbot && \
 	echo '0 0 * * Mon certbot renew; kill 1 # Auto renew & reload Asterisk' > /var/spool/cron/crontabs/root && \
 	echo '#!/bin/sh' >> /usr/local/bin/entrypoint.sh && \
 	echo 'crond -d 8 -L /var/log/crond.log' >> /usr/local/bin/entrypoint.sh && \
