@@ -22,8 +22,8 @@ RUN	apk add asterisk asterisk-sample-config asterisk-sounds-en asterisk-sounds-m
 	go build -ldflags="-s -w" . && \
 	mv sipexer /usr/local/bin
 
+WORKDIR /var/lib/asterisk
 VOLUME	["/etc/letsencrypt"]
 HEALTHCHECK --interval=120s --timeout=10s --start-period=15s --retries=3 CMD ["sh", "-c", "sipexer -co -fu healthcheck -tu healthcheck -timeout 1000 \"${HEALTHCHECK_SIPURL}\"|grep -q 'Server: Asterisk PBX 20.11.1'"]
 ENTRYPOINT	["entrypoint.sh"]
 CMD	["-f"]
-

@@ -7,3 +7,4 @@ RUN	wget http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-co
 	echo 'Copy moh sound for asterisk Playback()' && \
 	cp -a /var/lib/asterisk/moh/*.wav /var/lib/asterisk/sounds/en/
 
+WORKDIR /var/lib/asterisk

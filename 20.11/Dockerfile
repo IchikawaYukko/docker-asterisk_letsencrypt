@@ -16,6 +16,6 @@ RUN	apk add asterisk asterisk-sample-config asterisk-sounds-en asterisk-sounds-m
         echo 'fi' >> /usr/local/bin/entrypoint.sh && \
 	chmod 755 /usr/local/bin/entrypoint.sh
 
+WORKDIR /var/lib/asterisk
 ENTRYPOINT	["entrypoint.sh"]
 CMD	["-f"]
-
