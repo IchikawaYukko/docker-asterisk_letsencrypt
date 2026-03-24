@@ -2,6 +2,12 @@ FROM	golang:1.24.4-alpine3.22
 
 WORKDIR	/opt
 RUN	apk add asterisk asterisk-sample-config asterisk-sounds-en asterisk-sounds-moh asterisk-opus asterisk-fax asterisk-speex asterisk-srtp certbot git && \
+	echo '-- Prevent Asterisk errors --' && \
+	mkdir -p /var/lib/asterisk/keys /var/lib/asterisk/firmware/iax && \
+	sed -ie 's/^;Master.csv/Master.csv/' /etc/asterisk/cel_custom.conf && \
+	sed -ie 's/^;server/server/' /etc/asterisk/phoneprov.conf && \
+	sed -ie 's/^enabled = yes/enabled = no/' /etc/asterisk/ari.conf && \
+	sed -ie 's/sample_user_menu/default_menu/' /etc/asterisk/confbridge.conf && \
 	echo '-- Copy moh sound for asterisk Playback() app --' && \
 	cp -a /var/lib/asterisk/moh/*.wav /var/lib/asterisk/sounds/en/ && \
 	echo '0 0 * * Mon certbot renew; kill 1 # Auto renew & reload Asterisk' > /var/spool/cron/crontabs/root && \
