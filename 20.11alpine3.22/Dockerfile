@@ -1,4 +1,4 @@
-FROM	golang:1.24.4-alpine3.22
+FROM	golang:1.25.8-alpine3.22
 
 WORKDIR	/opt
 RUN	apk add asterisk asterisk-sample-config asterisk-sounds-en asterisk-sounds-moh asterisk-opus asterisk-fax asterisk-speex asterisk-srtp certbot git && \
