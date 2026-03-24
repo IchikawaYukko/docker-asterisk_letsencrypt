@@ -2,6 +2,8 @@ FROM	golang:1.24.4-alpine3.22
 
 WORKDIR	/opt
 RUN	apk add asterisk asterisk-sample-config asterisk-sounds-en asterisk-sounds-moh asterisk-opus asterisk-fax asterisk-speex asterisk-srtp certbot git && \
+	mv /usr/share/asterisk/moh /var/lib/asterisk/ && \
+	mv /usr/share/asterisk/sounds /var/lib/asterisk/ && \
 	echo '-- Prevent Asterisk errors --' && \
 	mkdir -p /var/lib/asterisk/keys /var/lib/asterisk/firmware/iax && \
 	sed -ie 's/^;Master.csv/Master.csv/' /etc/asterisk/cel_custom.conf && \
