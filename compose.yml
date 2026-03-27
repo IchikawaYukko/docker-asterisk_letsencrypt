@@ -4,6 +4,7 @@ services:
     build:
       context: 20.11/
     environment:
+      - NOTLS=yes
       - HEALTHCHECK_SIPURL=sip:[::1]:5060;transport=udp
 #    volumes:
 #      - ./pjsip.conf:/etc/asterisk/pjsip.conf:ro

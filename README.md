@@ -18,15 +18,16 @@ docker compose exec pbx sh
 ```
 取得したら一度`docker compose down`しておきます。
 ## 証明書を取得せず使う場合(TLS機能を使わない)
-`docker-compose up -d` したあと`docker compose exec pbx sh`でコンテナ内に入り`/etc/letsencrypt/empty`でダミーファイルを作成しておきます。
+`NOTLS` 環境変数に `yes` 値をセットしてから `docker-compose up -d` します。
 
 ```
-# docker compose exec pbx sh
-/ # touch /etc/letsencrypt/empty
-/ # exit
-# docker compose down
+compose.yml
+
+services:
+  pbx:
+    environment:
+      - NOTLS=yes
 ```
-`exit`して`docker compose down`しておきます。
 ## 起動
 `docker compose up -d`で起動します。必要な .conf ファイルはcompose.ymlの`volume:`項に書いておきます  
 取得した証明書はコンテナ起動時に`/var/lib/asterisk/keys/`へコピーされるので、 pjsip.conf などから参照して使用します。（sample-config/ 参照）
